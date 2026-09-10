@@ -1,0 +1,6 @@
+name = "my-homepage-worker"
+main = "index.js"
+compatibility_date = "2024-09-23"
+
+[assets]
+directory = "./" # or "./" if index.html is in the root
