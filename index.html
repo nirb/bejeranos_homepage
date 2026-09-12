@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -12,7 +13,8 @@
       box-sizing: border-box;
     }
 
-    html, body {
+    html,
+    body {
       width: 100%;
       height: 100%;
       overflow: hidden;
@@ -27,7 +29,7 @@
       min-height: 100dvh;
     }
 
-    /* Keep the full image visible on all screens without cropping */
+    /* Stretch image to fit the full page without cropping or margins */
     picture {
       display: flex;
       align-items: center;
@@ -42,21 +44,23 @@
       height: 100%;
       max-width: 100vw;
       max-height: 100dvh;
-      object-fit: contain;
+      object-fit: fill;
       object-position: center;
       display: block;
     }
   </style>
 </head>
+
 <body>
 
   <picture>
     <!-- Screen is taller than wide (Portrait / Mobile) -->
-    <source media="(orientation: portrait)" srcset="homepage-portrait.jpeg">
+    <source media="(orientation: portrait)" srcset="bg2.jpeg" alt="A Journey Through Tech, Growth, and New Chapters">
 
     <!-- Fallback & Landscape / Desktop (wider than tall) -->
-    <img src="homepage-landscape.jpeg" alt="A Journey Through Tech, Growth, and New Chapters" fetchpriority="high">
+    <img src="bg1.jpeg" alt="A Journey Through Tech, Growth, and New Chapters" fetchpriority="high">
   </picture>
 
 </body>
+
 </html>
