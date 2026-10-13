@@ -4,7 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Home</title>
+  <title>Bejeranos</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+  <link rel="alternate icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="favicon.png">
   <style>
     /* Remove default margins/padding and prevent scrollbars */
     * {
@@ -48,10 +52,267 @@
       object-position: center;
       display: block;
     }
+
+    /* Button theme matching the text color from bg1.jpeg */
+    :root {
+      --btn-bg: #734b20;
+      --btn-hover: #5c3b19;
+      --btn-active: #4a2e12;
+      --btn-color: #ffffff;
+    }
+
+    .btn,
+    .more-button,
+    .hidden-buttons {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      border-radius: 6px;
+      background: var(--btn-bg);
+      color: var(--btn-color);
+      font: 600 16px Arial, sans-serif;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease;
+      user-select: none;
+    }
+
+    .more-button {
+      position: fixed;
+      left: 20px;
+      bottom: 20px;
+      z-index: 10;
+    }
+
+    .btn:hover,
+    .more-button:hover,
+    .hidden-buttons:hover {
+      background: var(--btn-hover);
+    }
+
+    .btn:active,
+    .more-button:active,
+    .hidden-buttons:active {
+      background: var(--btn-active);
+      transform: scale(0.98);
+    }
+
+    /* Modal dialog styling */
+    dialog.popup-dialog {
+      border: none;
+      padding: 0;
+      border-radius: 12px;
+      background: transparent;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+      max-width: 90vw;
+      width: 360px;
+      position: fixed;
+      margin: auto;
+      inset: 0;
+      overflow: visible;
+    }
+
+    dialog.popup-dialog::backdrop {
+      background-color: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    .dialog-card {
+      position: relative;
+      background: #ffffff;
+      padding: 28px 24px 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      font-family: Arial, sans-serif;
+      color: #2b2b2b;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: #f3efe9;
+      color: #734b20;
+      border-radius: 50%;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .close-btn:hover {
+      background: #e5ded4;
+      color: #5c3b19;
+    }
+
+    .dialog-title {
+      margin: 0 0 8px;
+      font-size: 20px;
+      font-weight: 700;
+      color: #734b20;
+      text-align: center;
+    }
+
+    .dialog-desc {
+      margin: 0 0 16px;
+      font-size: 14px;
+      color: #666;
+      text-align: center;
+    }
+
+    .password-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .password-input {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 16px;
+      border: 1.5px solid #dcd3cb;
+      border-radius: 6px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-sizing: border-box;
+      text-align: center;
+      letter-spacing: 2px;
+    }
+
+    .password-input:focus {
+      border-color: #734b20;
+      box-shadow: 0 0 0 3px rgba(115, 75, 32, 0.2);
+    }
+
+    .password-input.input-error {
+      border-color: #d32f2f;
+      animation: shake 0.3s ease;
+    }
+
+    @keyframes shake {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-6px);
+      }
+
+      75% {
+        transform: translateX(6px);
+      }
+    }
+
+    .error-msg {
+      color: #d32f2f;
+      font-size: 13px;
+      margin: -4px 0 0;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .submit-btn {
+      width: 100%;
+      margin-top: 4px;
+    }
+
+    /* Buttons container: easily add future buttons */
+    .buttons-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .buttons-list .hidden-buttons {
+      width: 100%;
+      box-sizing: border-box;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(115, 75, 32, 0.25);
+    }
+
+    .dialog-footer {
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    .relock-btn {
+      background: none;
+      border: none;
+      color: #8c8278;
+      font-size: 12px;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 4px 8px;
+    }
+
+    .relock-btn:hover {
+      color: #734b20;
+    }
   </style>
 </head>
 
 <body>
+  <!-- "More" trigger button replacing the original hidden-buttons -->
+  <button type="button" class="more-button" id="moreBtn" aria-haspopup="dialog" aria-expanded="false">
+    More
+  </button>
+
+  <!-- Popup modal dialog -->
+  <dialog id="moreDialog" class="popup-dialog" closedby="any" aria-labelledby="dialogTitle">
+    <div class="dialog-card">
+      <button type="button" class="close-btn" id="closeDialogBtn" aria-label="Close">✕</button>
+
+      <!-- View 1: Password Prompt (shown when locked) -->
+      <div id="passwordView">
+        <h2 id="dialogTitle" class="dialog-title">Enter Password</h2>
+        <p class="dialog-desc">Please enter the password to view options.</p>
+        <form id="passwordForm" class="password-form" onsubmit="return false;">
+          <input type="password" id="passwordInput" class="password-input" placeholder="Password"
+            autocomplete="current-password" required />
+          <p id="passwordError" class="error-msg" role="alert" style="display: none;">
+            Incorrect password. Please try again.
+          </p>
+          <button type="submit" class="btn submit-btn" id="submitPasswordBtn">
+            Unlock
+          </button>
+        </form>
+      </div>
+
+      <!-- View 2: Unlocked Buttons (shown when password is correct) -->
+      <div id="buttonsView" style="display: none;">
+        <h2 class="dialog-title">Downloads & Links</h2>
+
+        <!-- ========================================================
+             BUTTONS LIST:
+             To add more buttons in the future, simply duplicate an <a> tag below.
+             All styles, colors, and behaviors are automatically inherited!
+             ======================================================== -->
+        <div class="buttons-list" id="unlockedButtonsList">
+          <a class="hidden-buttons" href="https://files.instinct.com/yfj1tzvii7jf" target="_blank"
+            rel="noopener noreferrer">
+            מתכוני הבית
+          </a>
+          <a class="hidden-buttons" href="https://files.instinct.com/xuxcylm6xmui?via=wa" target="_blank"
+            rel="noopener noreferrer">
+            משימות
+          </a>
+        </div>
+      </div>
+    </div>
+  </dialog>
 
   <picture>
     <!-- Screen is taller than wide (Portrait / Mobile) -->
@@ -61,6 +322,108 @@
     <img src="bg1.jpeg" alt="A Journey Through Tech, Growth, and New Chapters" fetchpriority="high">
   </picture>
 
+  <script>
+    (function () {
+      // Dynamic password calculation based on browser datetime:
+      // Password = encrypted base PIN + (day of week: Sunday = 1, Monday = 2, ..., Friday = 6, Saturday = 7)
+      const _ENC_BASE = 'WlRfVg==';
+      const _ENC_KEY = 'bejerano_key';
+
+      function getBasePin() {
+        return atob(_ENC_BASE).split('').map((char, index) =>
+          String.fromCharCode(char.charCodeAt(0) ^ _ENC_KEY.charCodeAt(index % _ENC_KEY.length))
+        ).join('');
+      }
+
+      function getExpectedPassword() {
+        const dayOfWeekNumber = new Date().getDay() + 1;
+        return getBasePin() + dayOfWeekNumber;
+      }
+
+      const moreDialog = document.getElementById('moreDialog');
+      const moreBtn = document.getElementById('moreBtn');
+      const closeDialogBtn = document.getElementById('closeDialogBtn');
+      const passwordForm = document.getElementById('passwordForm');
+      const passwordInput = document.getElementById('passwordInput');
+      const passwordError = document.getElementById('passwordError');
+      const passwordView = document.getElementById('passwordView');
+      const buttonsView = document.getElementById('buttonsView');
+      const relockBtn = document.getElementById('relockBtn');
+
+      let isUnlocked = sessionStorage.getItem('more_unlocked') === 'true';
+
+      function updateViewState() {
+        if (isUnlocked) {
+          passwordView.style.display = 'none';
+          buttonsView.style.display = 'block';
+        } else {
+          passwordView.style.display = 'block';
+          buttonsView.style.display = 'none';
+          passwordInput.value = '';
+          passwordError.style.display = 'none';
+          passwordInput.classList.remove('input-error');
+        }
+      }
+
+      function openModal() {
+        updateViewState();
+        moreBtn.setAttribute('aria-expanded', 'true');
+        moreDialog.showModal();
+        if (!isUnlocked) {
+          setTimeout(() => passwordInput.focus(), 60);
+        }
+      }
+
+      function closeModal() {
+        moreDialog.close();
+        moreBtn.setAttribute('aria-expanded', 'false');
+      }
+
+      moreBtn.addEventListener('click', openModal);
+      closeDialogBtn.addEventListener('click', closeModal);
+
+      moreDialog.addEventListener('close', () => {
+        moreBtn.setAttribute('aria-expanded', 'false');
+      });
+
+      // Light-dismiss fallback for browsers that do not yet support closedby="any" (e.g. Safari)
+      if (!('closedBy' in HTMLDialogElement.prototype)) {
+        moreDialog.addEventListener('click', (event) => {
+          if (event.target === moreDialog) {
+            closeModal();
+          }
+        });
+      }
+
+      // Password submission
+      passwordForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const entered = passwordInput.value.trim();
+        const expected = getExpectedPassword();
+
+        if (entered === expected) {
+          isUnlocked = true;
+          sessionStorage.setItem('more_unlocked', 'true');
+          updateViewState();
+        } else {
+          passwordError.style.display = 'block';
+          passwordInput.classList.remove('input-error');
+          // Re-trigger shake animation
+          void passwordInput.offsetWidth;
+          passwordInput.classList.add('input-error');
+          passwordInput.select();
+        }
+      });
+
+      // Relock option
+      relockBtn.addEventListener('click', () => {
+        isUnlocked = false;
+        sessionStorage.removeItem('more_unlocked');
+        updateViewState();
+        passwordInput.focus();
+      });
+    })();
+  </script>
 </body>
 
 </html>
