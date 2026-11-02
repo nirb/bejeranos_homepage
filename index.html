@@ -63,7 +63,6 @@
 
     .btn,
     .more-button,
-    .travel-button,
     .hidden-buttons {
       display: inline-flex;
       align-items: center;
@@ -84,27 +83,18 @@
     .more-button {
       position: fixed;
       left: 20px;
-      bottom: 76px;
-      z-index: 10;
-    }
-
-    .travel-button {
-      position: fixed;
-      left: 20px;
       bottom: 20px;
       z-index: 10;
     }
 
     .btn:hover,
     .more-button:hover,
-    .travel-button:hover,
     .hidden-buttons:hover {
       background: var(--btn-hover);
     }
 
     .btn:active,
     .more-button:active,
-    .travel-button:active,
     .hidden-buttons:active {
       background: var(--btn-active);
       transform: scale(0.98);
@@ -275,11 +265,6 @@
 </head>
 
 <body>
-  <!-- Standalone Travel link: always visible, no password -->
-  <a class="travel-button" href="https://instinct-travel.pages.dev" target="_blank" rel="noopener noreferrer">
-    Travel
-  </a>
-
   <!-- "More" trigger button replacing the original hidden-buttons -->
   <button type="button" class="more-button" id="moreBtn" aria-haspopup="dialog" aria-expanded="false">
     More
@@ -323,6 +308,10 @@
           <a class="hidden-buttons" href="https://files.instinct.com/xuxcylm6xmui?via=wa" target="_blank"
             rel="noopener noreferrer">
             משימות
+          </a>
+          <a class="hidden-buttons" href="https://instinct-travel.pages.dev" target="_blank"
+            rel="noopener noreferrer">
+            Travel
           </a>
         </div>
       </div>
